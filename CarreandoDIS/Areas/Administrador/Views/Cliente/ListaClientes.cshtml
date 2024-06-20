@@ -1,7 +1,7 @@
 @model List<CarreandoDIS.Models.Usuario>
 
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Areas/Administrador/Views/Shared/_LayoutAdmin.cshtml";
     Console.WriteLine(Model.Count());
     var usuarios = Model.ToList(); 
 }
@@ -32,11 +32,11 @@
 
                 <div class="userContainer">
                     <div class="userContainer_user">
-                        <label hidden>@usuario.IdUsuario</label>
+                        <label hidden>@usuario.idUsuario</label>
                         <input type="checkbox">
-                        <label>@usuario.Nombre @usuario.ApellidoPaterno @usuario.ApellidoMaterno</label>
-                        <label>@usuario.Dni</label>
-                        @if(usuario.Sexo == "Masculino"){
+                        <label>@usuario.nombre @usuario.apellidoPaterno @usuario.apellidoMaterno</label>
+                        <label>@usuario.dni</label>
+                        @if(usuario.sexo == "Masculino"){
                             <img src="~/img/SexIconH.svg"/>
                         }else{
                             <img src="~/img/SexIconM.svg"/>

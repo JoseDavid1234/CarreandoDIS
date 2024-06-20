@@ -6,15 +6,15 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int IdPlan { get; set; }
+        public int idPlan { get; set; }
 
-        public decimal? Precio { get; set; }
+        public decimal? precio { get; set; }
 
-        public string? Nombre { get; set; }
+        public string? nombre { get; set; }
 
-        public int? Velocidad { get; set; }
+        public int? velocidad { get; set; }
 
-        public string? Descripcion { get; set; }
+        public string? descripcion { get; set; }
 
     }
 }

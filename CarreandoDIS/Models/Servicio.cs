@@ -6,15 +6,15 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int IdServicio { get; set; }
+        public int idServicio { get; set; }
 
-        public DateTime? PeriodoFacturacion { get; set; }
+        public DateTime? periodoFacturacion { get; set; }
 
-        public string? Estado { get; set; }
+        public string? estado { get; set; }
 
-        public int? FkPlan { get; set; }
+        public int? fkPlan { get; set; }
 
-        public DateTime? FechaActivacion { get; set; }
+        public DateTime? fechaActivacion { get; set; }
 
     }
 }

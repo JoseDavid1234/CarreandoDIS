@@ -6,19 +6,19 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int IdTicket { get; set; }
+        public int idTicket { get; set; }
 
-        public string? TipoProblematica { get; set; }
+        public string? tipoProblematica { get; set; }
 
-        public string? Descripcion { get; set; }
+        public string? descripcion { get; set; }
 
-        public string? Estado { get; set; }
+        public string? estado { get; set; }
 
-        public DateTime? FechaEmision { get; set; }
+        public DateTime? fechaEmision { get; set; }
 
-        public int? FkTecnico { get; set; }
+        public int? fkTecnico { get; set; }
 
-        public int? FkCliente { get; set; }
+        public int? fkCliente { get; set; }
 
     }
 }

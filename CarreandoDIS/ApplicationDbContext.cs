@@ -36,5 +36,15 @@ namespace CarreandoDIS
             base.OnModelCreating(builder);
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            string connectionString = "Host=dpg-covel5i1hbls73dp5mbg-a.oregon-postgres.render.com;Database=tel_db_dkoz;Username=josue;Password=c2vwLAjiOBGxPNjbMY7WYdjDTggTRJBS;Port=5432";
+
+            optionsBuilder.UseNpgsql(connectionString);
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
     }
 }

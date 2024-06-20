@@ -6,17 +6,17 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int IdResenia { get; set; }
+        public int idResenia { get; set; }
 
-        public string? Contenido { get; set; }
+        public string? contenido { get; set; }
 
-        public int? Calificacion { get; set; }
+        public int? calificacion { get; set; }
 
-        public DateTime? FechaPublicacion { get; set; }
+        public DateTime? fechaPublicacion { get; set; }
 
-        public string? FkUsuario { get; set; }
+        public string? fkUsuario { get; set; }
 
-        public string? FkPlan { get; set; }
+        public string? fkPlan { get; set; }
 
     }
 }

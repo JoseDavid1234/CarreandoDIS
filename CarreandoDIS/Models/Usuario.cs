@@ -6,27 +6,27 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int IdUsuario { get; set; }
+        public int idUsuario { get; set; }
 
-        public string? Nombre { get; set; }
+        public string? nombre { get; set; }
 
-        public string? Contrasenia { get; set; }
+        public string? contrasenia { get; set; }
 
-        public string? Rol { get; set; }
+        public string? rol { get; set; }
 
-        public string? Correo { get; set; }
+        public string? correo { get; set; }
 
-        public string? ApellidoPaterno { get; set; }
+        public string? apellidoPaterno { get; set; }
 
-        public string? ApellidoMaterno { get; set; }
+        public string? apellidoMaterno { get; set; }
 
-        public string? Dni { get; set; }
+        public string? dni { get; set; }
 
-        public string? Sexo { get; set; }
+        public string? sexo { get; set; }
 
-        public int? FkServicio { get; set; }
+        public int? fkServicio { get; set; }
 
-        public int? FkPromocion { get; set; }
+        public int? fkPromocion { get; set; }
 
     }
 }
