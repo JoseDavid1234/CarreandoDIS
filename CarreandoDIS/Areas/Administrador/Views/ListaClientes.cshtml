@@ -1,0 +1,50 @@
+@model List<CarreandoDIS.Models.Usuario>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Console.WriteLine(Model.Count());
+    var usuarios = Model.ToList(); 
+}
+
+@section Scripts{
+     <script src="~/js/GestionClientes.js"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/listaClientes.css" asp-append-version="true" />
+}
+
+<section class="sectionHandler">
+    <section class="clientSectionContainer">
+        <h1>LISTA DE CLIENTES</h1>
+        <div class="opcionHandler">
+            <form class="searchForm">
+                <input placeholder="Nombre"/>
+                <button type="submit"><img src="~/img/SearchIcon.svg"/></button>
+            </form>
+            <div class="buttonHandler">
+                <!--<a id="btnAsignarDescuento">Asignar descuento</a>-->
+                <a id="btnAsignarPromocion">Asignar promocion</a>
+            </div>
+        </div>
+        <form>
+            @foreach(var usuario in usuarios){
+
+                <div class="userContainer">
+                    <div class="userContainer_user">
+                        <label hidden>@usuario.IdUsuario</label>
+                        <input type="checkbox">
+                        <label>@usuario.Nombre @usuario.ApellidoPaterno @usuario.ApellidoMaterno</label>
+                        <label>@usuario.Dni</label>
+                        @if(usuario.Sexo == "Masculino"){
+                            <img src="~/img/SexIconH.svg"/>
+                        }else{
+                            <img src="~/img/SexIconM.svg"/>
+                        }
+                    </div>
+                </div>
+
+            }
+        </form>
+    </section>
+</section>

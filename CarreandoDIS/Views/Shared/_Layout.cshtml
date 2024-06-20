@@ -1,49 +1,77 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta name="description"
+          content="JD Telecomunicaciones: Te brindamos el mejor servicio de Internet + Cable por FIBRA ÓPTICA, estamos en Cieneguilla y Manchay. Disfruta de INTERNET ILIMITADO." />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CarreandoDIS</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CarreandoDIS.styles.css" asp-append-version="true" />
+    <title>Internet por Fibra Óptica | JD Telecomunicaciones</title>
+    @await RenderSectionAsync("Styles", required: false)
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z63R74F5K2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z63R74F5K2');
+    </script>
+
 </head>
+
 <body>
+    <div class="cinta-cyan">
+    </div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarreandoDIS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+        <nav id="navbar" class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="~/img/jd-logo-azul.png" alt="logo de jd">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="enlace" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="enlace" asp-controller="Cobertura" asp-action="Index">Cobertura</a>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="enlace" asp-controller="Autentificacion" asp-action="Logout">Cerrar sesion</a>
                         </li>
+                    }
+                    else
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="enlace" asp-controller="Autentificacion" asp-action="IniciarSesion">Iniciar Sesion</a>
                         </li>
-                    </ul>
-                </div>
+                    }
+                </ul>
             </div>
         </nav>
+        <div id="cloneContainer"></div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - CarreandoDIS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+    <main role="main">
+        @RenderBody()
+        <a href="https://wa.me/+51991471172?text=Estimados%20señores%20de%20JDTelecomunicaciones,%0A%0AMe%20gustaría%20obtener%20más%20información%20acerca%20de%20los%20diferentes%20planes%20y%20paquetes%20que%20ofrecen,%20así%20como%20de%20los%20costos%20asociados%20a%20cada%20uno%20de%20ellos.%20Además,%20me%20interesa%20conocer%20los%20detalles%20técnicos,%20tales%20como%20la%20velocidad%20de%20conexión,%20el%20tipo%20de%20tecnología%20que%20utilizan%20y%20si%20ofrecen%20servicios%20de%20soporte%20técnico.%0A%0AAgradezco%20de%20antemano%20su%20atención%20y%20quedo%20a%20la%20espera%20de%20su%20respuesta%20para%20poder%20tomar%20una%20decisión%20informada%20sobre%20mi%20conexión%20a%20internet.%0A%0ASaludos%20cordiales."
+           target="_blank" class="whatsapp-button">
+            <img src="/img/wsp.png" alt="WhatsApp" />
+        </a>
+    </main>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

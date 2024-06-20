@@ -8,13 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Administrador\Controllers\" />
-    <Folder Include="Areas\Administrador\Data\" />
     <Folder Include="Areas\Administrador\Models\" />
-    <Folder Include="Areas\Administrador\Views\" />
     <Folder Include="Areas\Cliente\Controllers\" />
     <Folder Include="Areas\Cliente\Data\" />
     <Folder Include="Areas\Cliente\Models\" />

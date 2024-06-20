@@ -1,0 +1,80 @@
+.cinta-cyan {
+  height: 20px ;
+  background-color: #00ffff;
+}
+
+.imagen-logo {
+  width: 200px;
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px; /* Distancia desde abajo */
+  right: 20px; /* Distancia desde la derecha */
+  z-index: 9999; /* Asegura que el botón esté en la parte superior */
+  /* Agrega otros estilos según tus preferencias */
+}
+
+.whatsapp-button img {
+  width: 80px;
+}
+
+@media (min-width:769px){
+  #navbarNav a{
+    margin: 50px;
+  }
+  #navbarNav{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media(max-width: 768px){
+  .whatsapp-button {
+    bottom: 10px !important; /* Distancia desde abajo */
+    right: 10px !important; /* Distancia desde la derecha */
+    
+  }
+  .whatsapp-button img{
+    width: 60px;
+  }
+  .footer{
+    text-align: center;
+  }
+  .navbar {
+    height: auto !important;
+    background-color: white !important;
+    padding: 10px 10px !important;
+  }
+  .navbar-nav li{
+    margin: 8px;
+  }
+  #cloneContainer{
+    display: none;
+  }
+}
+
+.navbar {
+  height: 120px;
+  background-color: white !important;
+}
+
+
+.enlace{
+  text-decoration: none;
+  font-size: larger;
+  font-weight: 400;
+  font-family: "poppins";
+}
+
+#cloneContainer {
+  position: absolute;
+  top: 0;
+  z-index: 500;
+  pointer-events: none; /* Esta línea es importante, hace que los clics pasen a través del div */
+}
+
+#cloneContainer a {
+  pointer-events: all; /* Esta línea es importante, hace que los enlaces reciban clics */
+  opacity: 0;
+}
