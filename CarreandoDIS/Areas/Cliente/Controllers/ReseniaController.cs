@@ -19,7 +19,7 @@ namespace CarreandoDIS.Areas.Cliente.Controllers
         {
             var resenias = new ReseniasDA();
             var listaResenias = resenias.GetResenias();
-            return View("Reseñas", resenias);
+            return View("Reseñas", listaResenias);
         }
 
     }

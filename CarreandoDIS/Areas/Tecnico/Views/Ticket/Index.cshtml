@@ -1,4 +1,63 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{}
+
+@model List<JDTelecomunicaciones.Models.Tickets>;
+@{
+    Layout = "~/Views/Shared/_LayoutTecnico.cshtml";
+    var tickets = Model.ToList();
+
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/listaTickets.css" asp-append-version="true" />
+}
+
+<section class="sectionContainer">
+    <section class="sectionContainer_handler">
+        <h1>TICKETS</h1>
+        <h2>Todos los tickets de atencion al cliente</h2>
+        <form method="post" asp-controller="Tecnico" asp-action="BuscarTicket">
+            <input name="ticketId" type="text" placeholder="Numero del ticket"/>
+            <button>Buscar</button>
+        </form>
+        <form method="Get" asp-controller="Tecnico" asp-action="FiltrarTickets">
+            <select name="tipoTicket">
+                <option value="TODO">Todo</option>
+                <option value="PENDIENTE">Pendiente</option>
+                <option value="VISTO">Visto</option>
+            </select>
+            <button>Buscar</button>
+        </form>
+        <div class="ticketHandler">
+            @if(tickets.Count() >0){
+                @foreach(var ticket in tickets){
+                    <div class="ticketHandler_ticket">
+                        <a class="ticket_DetailButton" asp-controller="Tecnico" asp-action="InformacionTicket" asp-route-idTicket="@ticket.id_ticket"><img src="~/img/lupa.png"></a>
+                        <label>JDT-@ticket.id_ticket</label>
+                        <label class="ticket_problematica">@ticket.tipoProblematica_ticket</label>
+                        <label>@ticket.fecha_ticket</label>
+                            @if(ticket.status_ticket == "PENDIENTE"){
+                                <div class="ticketStatus" style="background: #FF5A5A" >
+                                    <img src="~/img/pendiente.png" alt="Pendiente"/>
+                                </div>
+                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.id_ticket">Marcar como hecho</a>
+                            }else if(ticket.status_ticket == "VISTO"){
+                                <div class="ticketStatus" style="background: #FFA95A" >
+                                    <img src="~/img/revision.png" alt="Revisado" style="background: #FFA95A" />
+                                </div>
+                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.id_ticket">Marcar como hecho</a>
+                            }else{
+                                <div class="ticketStatus" style="background: #25D366">
+                                    <img src="~/img/listo.png" alt="Listo" />
+                                </div>
+                                <a class="ticket_taskCompleted_active">Tarea completada</a>
+                            }
+                    </div>
+                }
+            }else{
+                <h1>No se encontraron tickets</h1>
+            }
+        </div>
+    </section>
+</section>
