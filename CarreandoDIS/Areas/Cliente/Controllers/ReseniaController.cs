@@ -17,7 +17,8 @@ namespace CarreandoDIS.Areas.Cliente.Controllers
         [HttpGet("Reseñas")]
         public async Task<IActionResult> Reseñas()
         {
-            var resenias = new ReseniasDA.GetResenias();
+            var resenias = new ReseniasDA();
+            var listaResenias = resenias.GetResenias();
             return View("Reseñas", resenias);
         }
 

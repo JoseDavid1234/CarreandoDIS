@@ -6,13 +6,13 @@
 @{
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
     var reviews = Model;
-    List<int> calificacionesUnicas = Model.Select(objeto => objeto.Calificacion).Distinct().ToList();
+    List<int> calificacionesUnicas = reviews.Select(objeto => objeto.Calificacion).Distinct().ToList();
     Dictionary<int, int> conteoCalificaciones = new Dictionary<int, int>();
     foreach (int calificacion in calificacionesUnicas)
     {
         conteoCalificaciones[calificacion] = 0;
     }
-    foreach (var objeto in Model)
+    foreach (var objeto in reviews)
     {
         if (conteoCalificaciones.ContainsKey(objeto.Calificacion))
         {
