@@ -33,20 +33,20 @@
             @if(tickets.Count() >0){
                 @foreach(var ticket in tickets){
                     <div class="ticketHandler_ticket">
-                        <a class="ticket_DetailButton" asp-controller="Tecnico" asp-action="InformacionTicket" asp-route-idTicket="@ticket.id_ticket"><img src="~/img/lupa.png"></a>
-                        <label>JDT-@ticket.id_ticket</label>
-                        <label class="ticket_problematica">@ticket.tipoProblematica_ticket</label>
+                        <a class="ticket_DetailButton" asp-controller="Tecnico" asp-action="InformacionTicket" asp-route-idTicket="@ticket.idTicket"><img src="~/img/lupa.png"></a>
+                        <label>JDT-@ticket.idTicket</label>
+                        <label class="ticket_problematica">@ticket.tipoProblematica</label>
                         <label>@ticket.fecha_ticket</label>
-                            @if(ticket.status_ticket == "PENDIENTE"){
+                            @if(ticket.estado == "PENDIENTE"){
                                 <div class="ticketStatus" style="background: #FF5A5A" >
                                     <img src="~/img/pendiente.png" alt="Pendiente"/>
                                 </div>
-                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.id_ticket">Marcar como hecho</a>
+                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.idTicket">Marcar como hecho</a>
                             }else if(ticket.status_ticket == "VISTO"){
                                 <div class="ticketStatus" style="background: #FFA95A" >
                                     <img src="~/img/revision.png" alt="Revisado" style="background: #FFA95A" />
                                 </div>
-                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.id_ticket">Marcar como hecho</a>
+                                <a class="ticket_taskCompleted" asp-controller="Tecnico" asp-action="MarcarTarea" asp-route-idTicket="@ticket.idTicket">Marcar como hecho</a>
                             }else{
                                 <div class="ticketStatus" style="background: #25D366">
                                     <img src="~/img/listo.png" alt="Listo" />
