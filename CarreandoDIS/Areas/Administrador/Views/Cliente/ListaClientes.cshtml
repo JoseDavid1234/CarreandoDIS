@@ -18,12 +18,12 @@
     <section class="clientSectionContainer">
         <h1>LISTA DE CLIENTES</h1>
         <div class="opcionHandler">
-            <form class="searchForm">
-                <input placeholder="Nombre"/>
+            <form method="get" asp-action="BuscarClientes" class="searchForm">
+                <input type="text" name="cadenaBusqueda" placeholder="Nombre" />
                 <button type="submit"><img src="~/img/SearchIcon.svg"/></button>
             </form>
             <div class="buttonHandler">
-                <!--<a id="btnAsignarDescuento">Asignar descuento</a>-->
+                <a id="btnAsignarDescuento">Asignar descuento</a>
                 <a id="btnAsignarPromocion">Asignar promocion</a>
             </div>
         </div>
@@ -40,6 +40,12 @@
                             <img src="~/img/SexIconH.svg"/>
                         }else{
                             <img src="~/img/SexIconM.svg"/>
+                        }
+                        @if (usuario.fkPromocion != null)
+                        {
+                            <div class="userShareOption">
+                                <label>P</label>
+                            </div>
                         }
                     </div>
                 </div>

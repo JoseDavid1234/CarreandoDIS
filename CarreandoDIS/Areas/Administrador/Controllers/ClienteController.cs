@@ -1,5 +1,7 @@
 ﻿using CarreandoDIS.Areas.Administrador.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+
 
 namespace CarreandoDIS.Areas.Administrador.Controllers
 {
@@ -25,5 +27,19 @@ namespace CarreandoDIS.Areas.Administrador.Controllers
 
             return View("ListaClientes", clientes);
         }
+
+        [HttpGet("BuscarClientes")]
+        public async Task<IActionResult> BuscarClientes(string cadenaBusqueda)
+        {
+            Debug.WriteLine($"La cadena de búsqueda es: {cadenaBusqueda}");
+            Console.WriteLine($"Se depuro {cadenaBusqueda}");
+            var clienteDA = new TecnicoDA();
+            var clientes = clienteDA.GetClientesPorTexto(cadenaBusqueda);
+            return View("ListaClientes", clientes);
+        }
+
+
+
+
     }
 }

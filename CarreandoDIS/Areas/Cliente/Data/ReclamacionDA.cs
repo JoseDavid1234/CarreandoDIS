@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace CarreandoDIS.Areas.Administrador.Data
 {
-    public class ClienteDA
+    public class ReclamacionDA
     {
 
         public IEnumerable<Usuario> GetClientes()

@@ -156,3 +156,11 @@
     border: none;
     font-weight: 600;
 }
+
+
+.userShareOption {
+    display: flex;
+    align-items: center;
+    background-color: aqua;
+    border-radius:50%;
+}

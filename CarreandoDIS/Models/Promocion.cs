@@ -6,19 +6,13 @@ namespace CarreandoDIS.Models
     {
 
         [Key]
-        public int idRecibo { get; set; }
+        public int idPromocion { get; set; }
 
-        public string? plan { get; set; }
+        public string? nombre { get; set; }
 
-        public int? monto { get; set; }
+        public int? efectoPromocion { get; set; }
 
-        public string? estado { get; set; }
-
-        public int? fkUsuario { get; set; }
-
-        public DateTime? fechaVencimiento { get; set; }
-
-        public DateTime? fechaPago { get; set; }
+        public string? urlImagen { get; set; }
 
     }
 }
