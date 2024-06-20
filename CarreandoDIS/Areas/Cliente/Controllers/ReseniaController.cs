@@ -1,24 +1,40 @@
-﻿using CarreandoDIS.Areas.Cliente.Data;
+﻿using CarreandoDIS.Areas.Administrador.Data;
+using CarreandoDIS.Areas.Cliente.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarreandoDIS.Areas.Cliente.Controllers
 {
+    [Area("Cliente")]
     public class ReseniaController : Controller
     {
-        // GET: ReseniaController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         //[Authorize(Roles = "C")]
-        [HttpGet("Reseñas")]
-        public async Task<IActionResult> Reseñas()
+        [HttpGet("/Cliente/Resenia/Index")]
+        public async Task<IActionResult> Index()
         {
-            var resenias = new ReseniasDA.GetResenias();
-            return View("Reseñas", resenias);
+
+            var reseniaDA = new ReseniaDA();
+
+            var clienteDA = new ClienteDA();
+
+            var clientes=clienteDA.GetClienteReseniaVMs();
+
+            foreach (var cli in clientes)
+            {
+                var resenia = reseniaDA.GetReseniaxUsuario(cli.idUsuario);
+
+                if (resenia != null)
+                {
+                    cli.calificacion = resenia.calificacion;
+                    cli.fechaPublicacion = resenia.fechaPublicacion;
+                    cli.contenido = resenia.contenido;
+                }
+                
+            }
+
+
+            return View(clientes);
         }
 
     }

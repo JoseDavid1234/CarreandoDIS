@@ -1,11 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<CarreandoDIS.Models.Recibo>
 
 @{
-    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
-    var recibosPagados = Model.ModelosT.ToList();
-    var recibosPendientes = Model.ModelosS.ToList();
+    Layout = "~/Areas/Cliente/Views/Shared/_LayoutCliente.cshtml";
+    var recibosPagados = Model.Where(x=> x.estado == "PAGADO").ToList();
+    var recibosPendientes = Model.Where(x => x.estado == "PENDIENTE").ToList();
 }
 
 @section Styles {
@@ -43,16 +41,16 @@
                 @foreach (var item in recibosPagados)
                 {
                     <div class="contenedorRecibos_recibo">
-                        <label>Plan @item.plan_recibo</label>
+                        <label>Plan @item.plan</label>
                         <div class="recibo_identificadorRecibo">
                             <label id="reciboName">JDK-@item.idRecibo</label>
                             <!--<div class="identificadorRecibo_downloadContainer">
                                 <img src="~/img/downloadIcon.svg" alt="A icon of Download"/>
                             </div>-->
                         </div>
-                        <label class="recibo_mesRecibo">@item.mes_recibo</label>
-                        <label>@item.fecha_vencimiento</label>
-                        <label>S/@item.monto_recibo</label>
+                        <label class="recibo_mesRecibo">@item.fechaPago?.ToString("dd/MM/yyyy")</label>
+                        <label>@item.fechaVencimiento?.ToString("dd/MM/yyyy")</label>
+                        <label>S/@item.monto</label>
                     </div>
                 }
             }
@@ -72,9 +70,9 @@
                 @foreach (var item in recibosPendientes)
                 {
                     <div>
-                        <label>@item.mes_recibo</label>
-                        <label>@item.fecha_vencimiento</label>
-                        <label><strong>S/@item.monto_recibo</strong></label>
+                        <label>@item.fechaPago?.ToString("dd/MM/yyyy")o</label>
+                        <label>@item.fechaVencimiento?.ToString("dd/MM/yyyy")</label>
+                        <label><strong>S/@item.monto</strong></label>
                     </div>
                 }
             </div>

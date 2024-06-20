@@ -18,7 +18,7 @@ namespace CarreandoDIS.Areas.Administrador.Controllers
             _httpContextAccessor = httpContextAccessor; // Para acceder a los datos del usuario conectado
         }
 
-        [HttpGet("ListaClientes")]
+        [HttpGet("/Administrador/Cliente/ListaClientes")]
         public async Task<IActionResult> ListaClientes()
         {
             var clienteDA = new ClienteDA();

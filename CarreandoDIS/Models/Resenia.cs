@@ -14,9 +14,9 @@ namespace CarreandoDIS.Models
 
         public DateTime? fechaPublicacion { get; set; }
 
-        public string? fkUsuario { get; set; }
+        public int? fkUsuario { get; set; }
 
-        public string? fkPlan { get; set; }
+        public int? fkPlan { get; set; }
 
     }
 }

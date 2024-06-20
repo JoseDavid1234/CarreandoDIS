@@ -1,4 +1,5 @@
 ﻿using CarreandoDIS.Models;
+using CarreandoDIS.ViewModels;
 using System.Diagnostics;
 
 namespace CarreandoDIS.Areas.Administrador.Data
@@ -13,6 +14,27 @@ namespace CarreandoDIS.Areas.Administrador.Data
             {
                 //listado = db.Cliente.OrderBy(x => x.NombreTipoPersona).ToList();
                 listado = db.Usuario.ToList();
+            }
+            return listado;
+        }
+
+        public IEnumerable<UsuarioReseniaVM> GetClienteReseniaVMs()
+        {
+            var listado = new List<UsuarioReseniaVM>();
+            using (var db = new ApplicationDbContext())
+            {
+
+                var query = from usu in db.Usuario
+                            select new UsuarioReseniaVM()
+                            {
+                                idUsuario = usu.idUsuario,
+                                nombre = usu.nombre,
+                                rol = usu.rol,
+                                correo = usu.correo,
+                            };
+
+                //listado = db.Cliente.OrderBy(x => x.NombreTipoPersona).ToList();
+                listado = query.ToList();
             }
             return listado;
         }

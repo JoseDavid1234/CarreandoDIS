@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CarreandoDIS.Areas.Administrador.Data;
+using CarreandoDIS.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarreandoDIS.Areas.Cliente.Controllers
 {
+    [Area("Cliente")]
     public class RecibosController : Controller
     {
-        // GET: RecibosController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET: RecibosController/Details/5
         public ActionResult Details(int id)
         {
@@ -77,6 +75,29 @@ namespace CarreandoDIS.Areas.Cliente.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        [HttpGet("/Cliente/Recibos/Index")]
+        public async Task<IActionResult> Index()
+        {
+            //var idUserClaim = User.FindFirst("idUser").Value;
+
+            var idUserClaim = "1";
+            var reciboDA = new ReciboDA();
+
+            if (idUserClaim != null)
+            {
+                int idCliente = int.Parse(idUserClaim);
+
+                var recibos = reciboDA.GetRecibos();
+
+                return View("Index", recibos);
+
+            }
+            else
+            {
+                return View("Error");
             }
         }
     }
