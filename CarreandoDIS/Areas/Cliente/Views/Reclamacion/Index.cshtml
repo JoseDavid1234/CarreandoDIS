@@ -1,8 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CarreandoDIS.Models.Usuario
+
 @{
-    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+    Layout = "~/Areas/Cliente/Views/Shared/_LayoutCliente.cshtml";
 
 }
 
@@ -18,8 +17,8 @@
     <h1>Libro de reclamaciones</h1>
     <form asp-action="SubirReclamacion" asp-controller="Cliente" method="POST">
         <div>
-            <input value=@Model.persona.nombrePersona type="text" placeholder="Nombre" readonly />
-            <input value=@Model.persona.apPatPersona @Model.persona.apMatPersona type="text" placeholder="Apellidos" readonly />
+            <input value=@Model.nombre type="text" placeholder="Nombre" readonly />
+            <input value=@Model.apellidoPaterno @Model.apellidoMaterno type="text" placeholder="Apellidos" readonly />
         </div>
         <select name="reclamationType">
             <option>Velocidad y calidad de conexión</option>

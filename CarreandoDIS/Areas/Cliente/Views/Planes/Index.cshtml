@@ -1,11 +1,131 @@
-﻿@*//
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+    Layout = "~/Areas/Cliente/Views/Shared/_LayoutCliente.cshtml";
+    //Console.WriteLine(Model.Count());
+    var userService = Model.ModeloT;
+    var planes = Model.ModelosS;
 
-@model List<CarreandoDIS.Models.Ticket>
+    var PeriodoFacturacion_Servicio = userService.FechaActivacion_Servicio;
+    var FechaActivacion_Servicio = userService.PeriodoFacturacion_Servicio;
 
-@{
-    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+
+    int diferenciaEnDias = (FechaActivacion_Servicio - PeriodoFacturacion_Servicio).Days;
 
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/misPlanes.css" asp-append-version="true" />
+
+}
+
+@section Scripts {
+    <script src="~/js/GestionPlanes.js"></script>
+}
+
+<section class="PlanModule">
+    <section class="PlanModule_planSectionContainer">
+        <h1>Mira todos nuestros planes</h1>
+        <form class="planSectionContainer_form" method="GET" asp-action="FiltrarPlanes" asp-controller="Cliente">
+            <select name="SelectedRange">
+                <option value="Todos">Todos</option>
+                <option value="50-100">Entre 50 y 100</option>
+                <option value="100-150">Entre 100 y 150</option>
+                <option value="150-200">Entre 150 y 200</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+        <section class="PlanSectionContainer_planHandler">
+            @if (planes != null /*planes.Count()>0*/)
+            {
+                @foreach (var plan in planes)
+                {
+                    <div class="PlanCard scale-up-center">
+                        <label hidden>@plan.id</label>
+                        <div class="PlanCard_header">
+                            <label>@plan.nombre_plan</label>
+                        </div>
+                        <div class="PlanCard_price">
+                            <label>s/<span>@String.Format("{0}", plan.precio_plan.ToString("0"))</span>x mes</label>
+                        </div>
+                        <div class="PlanCard_description">
+                            <label class="description_webSpeed">@plan.velocidad_plan Mbps</label>
+                            <label class="description_info">@plan.descripcion_plan</label>
+                        </div>
+                        <div class="PlanCard_infoContainer">
+                            <div class="infoContainer_info">
+                                <label>Modem WI-FI</label>
+                                <label>Descargas ilimitadas</label>
+                                <label>+ canales HD/SD</label>
+                            </div>
+                            <div class="infoContainer_icons">
+                                <img alt="Icon of a Switch o Computer" />
+                                <img alt="Icon of a Switch o Computer" />
+                            </div>
+                        </div>
+                        <button id="btnSeleccionar">Seleccionar</button>
+                    </div>
+                }
+            }
+            else
+            {
+                <h1>No se encontro ningun plan!</h1>
+            }
+        </section>
+    </section>
+    <section class="PlanModule_PlanSelectedContainer">
+        @if (userService == null)
+        {
+            <div class="PlanSelectedContainer_actualPlan_Inactive">
+                <h1>No tienes ningun plan activo</h1>
+                <span>Selecciona un plan de tu preferencia para contratarlo</span>
+                <img src="~/img/carita.png" alt="Smiling Face" />
+            </div>
+        }
+        else
+        {
+            <div class="PlanSelectedContainer_actualPlan">
+                <h1>Plan Actual : @userService.Plan_Servicio.nombre_plan</h1>
+                <label>
+                    Estado del servicio:
+                    @if (userService.Estado_Servicio == 'A')
+                    {
+                        <strong>Activo</strong>
+                    }
+                    else
+                    {
+                        <strong>Expirado</strong>
+                    }
+                </label>
+                <span>¡Quedan @diferenciaEnDias dias para que se genere un nuevo recibo!</span>
+                <label>Servicio activo desde <storng>@userService.FechaActivacion_Servicio.ToString("dd/MM/yyyy")</storng></label>
+                <label>Periodo de facturacion <storng>@userService.PeriodoFacturacion_Servicio.ToString("dd/MM/yyyy")</storng></label>
+
+                <div class="PlanCard scale-up-center">
+                    <label hidden>@userService.Plan_Servicio.id</label>
+                    <div class="PlanCard_header">
+                        <label>@userService.Plan_Servicio.nombre_plan</label>
+                    </div>
+                    <div class="PlanCard_price">
+                        <label>s/<span>@String.Format("{0}", userService.Plan_Servicio.precio_plan.ToString("0"))</span>x mes</label>
+                    </div>
+                    <div class="PlanCard_description">
+                        <label class="description_webSpeed">@userService.Plan_Servicio.velocidad_plan Mbps</label>
+                        <label class="description_info">@userService.Plan_Servicio.descripcion_plan</label>
+                    </div>
+                    <div class="PlanCard_infoContainer">
+                        <div class="infoContainer_info">
+                            <label>Modem WI-FI</label>
+                            <label>Descargas ilimitadas</label>
+                            <label>+ canales HD/SD</label>
+                        </div>
+                        <div class="infoContainer_icons">
+                            <img alt="Icon of a Switch o Computer" />
+                            <img alt="Icon of a Switch o Computer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div class="planSelectedHandler"></div>
+    </section>
+</section>

@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CarreandoDIS.Areas.Administrador.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarreandoDIS.Areas.Tecnico.Controllers
 {
+    [Area("Tecnico")]
     public class TicketController : Controller
     {
-        // GET: TicketController
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         // GET: TicketController/Details/5
         public ActionResult Details(int id)
@@ -79,5 +76,27 @@ namespace CarreandoDIS.Areas.Tecnico.Controllers
                 return View();
             }
         }
+
+
+        [HttpGet("/Tecnico/Ticket/Index")]
+        public IActionResult Index()
+        {
+
+            var ticketDA = new TicketDA();
+
+            var tickets = ticketDA.GetTickets();
+            return View("Index", tickets);
+        }
+
+        [HttpGet("/Tecnico/Ticket/TareasHechas")]
+        public IActionResult TareasHechas()
+        {
+
+            var ticketDA = new TicketDA();
+
+            var tickets = ticketDA.GetTicketsHechos();
+            return View("TareasHechas", tickets);
+        }
+
     }
 }

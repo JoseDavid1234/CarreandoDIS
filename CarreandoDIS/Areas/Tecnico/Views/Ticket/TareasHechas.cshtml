@@ -1,0 +1,54 @@
+@model IEnumerable<CarreandoDIS.Models.Ticket>;
+@{
+    Layout = "~/Areas/Tecnico/Views/Shared/_LayoutTecnico.cshtml";
+    var tickets = Model.ToList();
+
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/listaTickets.css" asp-append-version="true" />
+}
+
+<section class="sectionContainer">
+    <section class="sectionContainer_handler">
+        <h1>Tareas Hechas</h1>
+        <h2>Tareas realizadas con exito</h2>
+        <form method="get" asp-controller="Tecnico" asp-action="BuscarTicketCompletado">
+            <input name="ticketId" type="text" placeholder="Numero del ticket"/>
+            <button>Buscar</button>
+        </form>
+        <div class="ticketHandler">
+            @if(tickets.Count() >0){
+                @foreach(var ticket in tickets){
+                    <div class="ticketHandler_ticket">
+                        @if(ticket.idTicket != null){
+                            <a class="ticket_DetailButton" asp-controller="Tecnico" asp-action="InformacionTicket" asp-route-idTicket="@ticket.idTicket"><img src="~/img/lupa.png"></a>
+
+                        }else{
+                            <a>Null</a>
+                        }
+                        <label>JDTL-@ticket.idTicket</label>
+                        <label>Fecha @ticket.fechaEmision</label>
+                        <label class="ticket_problematica">@ticket.tipoProblematica</label>
+                            @if(ticket.estado == "PENDIENTE"){
+                            <div class="ticketStatus" style="background: #FF5A5A" >
+                                <img src="~/img/pendiente.png" alt="Pendiente"/>
+                            </div>
+
+                            }else if(ticket.estado == "VISTO"){
+                                <div class="ticketStatus" style="background: #FFA95A" >
+                                    <img src="~/img/revision.png" alt="Revisado" style="background: #FFA95A" />
+                                </div>
+                            }else{
+                                <div class="ticketStatus" style="background: #25D366">
+                                    <img src="~/img/listo.png" alt="Listo" />
+                                </div>
+                            }
+                    </div>
+                }
+            }else{
+                <h1>NO SE ENCONTRARON TICKETS COMPLETADOS</h1>
+            }
+        </div>
+    </section>
+</section>

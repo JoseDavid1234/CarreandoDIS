@@ -28,7 +28,7 @@ namespace CarreandoDIS.Areas.Administrador.Controllers
             return Ok();
         }
 
-        [HttpGet("CrearPromocionIndex")]
+        [HttpGet("/Administrador/Promocion/Index")]
         public async Task<IActionResult> CrearPromocionIndex()
         {
             //var promocionDA = new PromocionDA();

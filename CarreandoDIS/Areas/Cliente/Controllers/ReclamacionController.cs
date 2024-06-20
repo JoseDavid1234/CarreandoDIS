@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CarreandoDIS.Areas.Administrador.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarreandoDIS.Areas.Cliente.Controllers
 {
+    [Area("Cliente")]
     public class ReclamacionController : Controller
     {
-        // GET: ReclamacionController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET: ReclamacionController/Details/5
         public ActionResult Details(int id)
         {
@@ -79,5 +76,23 @@ namespace CarreandoDIS.Areas.Cliente.Controllers
                 return View();
             }
         }
+
+        [HttpGet("/Cliente/Reclamacion/Index")]
+        public async Task<IActionResult> Index()
+        {
+            var idUserClaim = "1";
+            int idUsuario = int.Parse(idUserClaim);
+            var clienteDA = new ClienteDA();
+            var usuario = clienteDA.GetUsuarioxId(idUsuario);
+            if (usuario != null)
+            {
+                return View(usuario);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }

@@ -18,6 +18,17 @@ namespace CarreandoDIS.Areas.Administrador.Data
             return listado;
         }
 
+        public Usuario GetUsuarioxId(int idUsuario)
+        {
+            var listado = new List<Usuario>();
+            using (var db = new ApplicationDbContext())
+            {
+                //listado = db.Cliente.OrderBy(x => x.NombreTipoPersona).ToList();
+                listado = db.Usuario.Where(x => x.idUsuario == idUsuario).ToList();
+            }
+            return listado.FirstOrDefault();
+        }
+
         public IEnumerable<UsuarioReseniaVM> GetClienteReseniaVMs()
         {
             var listado = new List<UsuarioReseniaVM>();

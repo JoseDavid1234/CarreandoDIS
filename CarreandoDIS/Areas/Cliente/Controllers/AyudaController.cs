@@ -54,6 +54,13 @@ namespace CarreandoDIS.Areas.Cliente.Controllers
 
         }
 
+        [HttpGet("/Cliente/Ayuda/Cobertura")]
+        public async Task<IActionResult> Cobertura(int usuarioId)
+        {
+
+            return View();
+        }
+
 
     }
 }
