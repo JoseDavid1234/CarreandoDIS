@@ -8,13 +8,13 @@ WORKDIR /app
 COPY . .
 
 
-RUN dotnet restore "CarreandoDis/CarreandoDIS.csproj"
+RUN dotnet restore "CarreandoDis/CarreandoDis/CarreandoDIS.csproj"
 
 
-RUN dotnet build "CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/build
+RUN dotnet build "CarreandoDis/CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/build
 
 
-RUN dotnet publish "CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/publish
+RUN dotnet publish "CarreandoDis/CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/publish
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
