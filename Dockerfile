@@ -8,15 +8,15 @@ WORKDIR /app
 COPY . .
 
 # Asegúrate de que el archivo de proyecto .csproj exista en la ubicación correcta
-# Asumiendo que CarreandoDIS.csproj está dentro de CarreandoDis/CarreandoDis
-RUN ls -la CarreandoDis/CarreandoDis  # Comprueba que el archivo CarreandoDIS.csproj esté presente
-RUN dotnet restore "CarreandoDis/CarreandoDis/CarreandoDIS.csproj"
+# Revisa la estructura de carpetas y ajusta la ruta según sea necesario
+RUN ls -la  # Listar el contenido para verificar la estructura actual
+RUN ls -la CarreandoDis  # Comprueba si la carpeta CarreandoDis está presente
+RUN ls -la CarreandoDis/CarreandoDIS  # Comprueba si la carpeta CarreandoDis/CarreandoDIS está presente
 
-# Genera la aplicación en modo Release (producción)
-RUN dotnet build "CarreandoDis/CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/build
-
-# Publica la aplicación en un directorio listo para desplegar
-RUN dotnet publish "CarreandoDis/CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/publish
+# Ejecuta dotnet restore, build y publish
+RUN dotnet restore "CarreandoDis/CarreandoDIS.csproj"
+RUN dotnet build "CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/build
+RUN dotnet publish "CarreandoDis/CarreandoDIS.csproj" -c Release -o /app/publish
 
 # Utiliza la imagen base de .NET 8 para ejecutar la aplicación publicada
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -25,4 +25,5 @@ COPY --from=build /app/publish .
 
 # Define el comando de inicio para ejecutar la aplicación cuando se inicie el contenedor
 CMD ["dotnet", "CarreandoDIS.dll"]
+
 
